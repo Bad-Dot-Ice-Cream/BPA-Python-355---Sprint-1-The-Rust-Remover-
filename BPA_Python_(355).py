@@ -5,7 +5,11 @@ sku = input("SKU: ")
 price = float(input("Price: "))
 ram = input("RAM: ")
 storage = input("Storage: ")
-touchscreen = input("Touchscreen (Y/N): ")
+user_input_touch = input("Touchscreen (Y/N): ")
+if user_input_touch.lower == "y":
+    is_touchscreen = True
+else:
+     is_touchscreen = False
 
 class Product:
     def __init__(self, name, sku, price):
@@ -22,10 +26,11 @@ class Product:
         def get_price(self):
             return self.__price
         
-def calculate_discount(percent):
-            percent_process = price * 0.15
-            percent = round(percent_process, 2)
-            print("Discounted price > ",percent)
+def calculate_discount(discount=0.15):
+    percent_process = price * discount  # (percent_process = 19.99 * 0.15)
+    percent_rounded = round(percent_process, 2)  # $3.00
+    finished_discount = price - percent_rounded  # (19.99 - 3.00)
+    print("Discounted price > ",round(finished_discount, 2))
 
     
 class Laptop(Product):
@@ -41,5 +46,5 @@ def spec_sheet():
     print("------")
     print(sku)
     print("$",price)
-    calculate_discount(0.15)
+    calculate_discount()
 spec_sheet()
